@@ -27,12 +27,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+	
     self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    [[self tableView] setRowHeight:57.0f];
 }
 
 - (void)didReceiveMemoryWarning
@@ -60,15 +57,33 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    return 10;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell"];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+        
+    }
+    NSInteger fileIdx = [indexPath row];
+    NSString *dataFilePath = [_detailViewController makeDataPathWithIndex:fileIdx];
+    NSString *title = @"no data";
+    if ([[NSFileManager defaultManager] fileExistsAtPath:dataFilePath]){
+        NSMutableDictionary *dic = [NSMutableDictionary dictionaryWithContentsOfFile:dataFilePath];
+        title = [dic valueForKey:@"title"];
+        if ((title == nil)|| ([title length]==0)) {
+            title = @"no title";
+        }
+    }
+    [[cell textLabel] setText:title];
+    NSString *iconFilePath = [_detailViewController makeIconPathWithIndex:fileIdx];
+    UIImage *iconImage = [UIImage imageNamed:@"no_image.png"];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:iconFilePath]) {
+        iconImage = [UIImage imageWithContentsOfFile:iconFilePath];
+    }
+    [[cell imageView] setImage:iconImage];
     return cell;
 }
 
@@ -78,15 +93,6 @@
     return YES;
 }
 
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
-}
 
 /*
 // Override to support rearranging the table view.
@@ -106,8 +112,21 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSDate *object = _objects[indexPath.row];
-    self.detailViewController.detailItem = object;
+    NSInteger fileIdx = [indexPath row];
+    [self.detailViewController setDetailItem:[NSNumber numberWithInteger:fileIdx]];
+    //選択したfileIdxをUserDefaultsに保存しておく（再起動時に読み込むため）
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud setInteger:fileIdx forKey:@"fileIdx"];
+    [ud synchronize];
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    //最後の選択にする
+    NSInteger fileIdx = [[NSUserDefaults standardUserDefaults] integerForKey:@"fileIdx"];
+    UITableView *tableView = (UITableView *)[self view];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:fileIdx inSection:0];
+    [tableView selectRowAtIndexPath:indexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
 }
 
 @end

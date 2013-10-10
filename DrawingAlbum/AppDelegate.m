@@ -16,6 +16,13 @@
     UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
     UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
     splitViewController.delegate = (id)navigationController.topViewController;
+    
+    if([splitViewController respondsToSelector:@selector(setPresentsWithGesture:)]){
+        [splitViewController setPresentsWithGesture:NO];
+    } else {
+        
+    }
+    
     return YES;
 }
 							

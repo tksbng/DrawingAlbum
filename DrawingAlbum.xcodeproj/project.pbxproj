@@ -24,6 +24,11 @@
 		FF0BB1CC17CD865D007AE516 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF0BB1A417CD865D007AE516 /* Foundation.framework */; };
 		FF0BB1D417CD865D007AE516 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FF0BB1D217CD865D007AE516 /* InfoPlist.strings */; };
 		FF0BB1D717CD865D007AE516 /* DrawingAlbumTests.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0BB1D617CD865D007AE516 /* DrawingAlbumTests.m */; };
+		FF0BB1E417CD8698007AE516 /* cork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FF0BB1E017CD8698007AE516 /* cork.jpg */; };
+		FF0BB1E517CD8698007AE516 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = FF0BB1E117CD8698007AE516 /* icon.png */; };
+		FF0BB1E617CD8698007AE516 /* no_image.png in Resources */ = {isa = PBXBuildFile; fileRef = FF0BB1E217CD8698007AE516 /* no_image.png */; };
+		FF0BB1E717CD8698007AE516 /* none.png in Resources */ = {isa = PBXBuildFile; fileRef = FF0BB1E317CD8698007AE516 /* none.png */; };
+		FF0BB1EA17CD8A17007AE516 /* DrawingView.m in Sources */ = {isa = PBXBuildFile; fileRef = FF0BB1E917CD8A17007AE516 /* DrawingView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +66,12 @@
 		FF0BB1D317CD865D007AE516 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FF0BB1D517CD865D007AE516 /* DrawingAlbumTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DrawingAlbumTests.h; sourceTree = "<group>"; };
 		FF0BB1D617CD865D007AE516 /* DrawingAlbumTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DrawingAlbumTests.m; sourceTree = "<group>"; };
+		FF0BB1E017CD8698007AE516 /* cork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cork.jpg; sourceTree = "<group>"; };
+		FF0BB1E117CD8698007AE516 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		FF0BB1E217CD8698007AE516 /* no_image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_image.png; sourceTree = "<group>"; };
+		FF0BB1E317CD8698007AE516 /* none.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = none.png; sourceTree = "<group>"; };
+		FF0BB1E817CD8A17007AE516 /* DrawingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawingView.h; sourceTree = "<group>"; };
+		FF0BB1E917CD8A17007AE516 /* DrawingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawingView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +101,10 @@
 		FF0BB19617CD865C007AE516 = {
 			isa = PBXGroup;
 			children = (
+				FF0BB1E017CD8698007AE516 /* cork.jpg */,
+				FF0BB1E117CD8698007AE516 /* icon.png */,
+				FF0BB1E217CD8698007AE516 /* no_image.png */,
+				FF0BB1E317CD8698007AE516 /* none.png */,
 				FF0BB1A817CD865D007AE516 /* DrawingAlbum */,
 				FF0BB1CF17CD865D007AE516 /* DrawingAlbumTests */,
 				FF0BB1A117CD865D007AE516 /* Frameworks */,
@@ -128,6 +143,8 @@
 				FF0BB1C017CD865D007AE516 /* DetailViewController.h */,
 				FF0BB1C117CD865D007AE516 /* DetailViewController.m */,
 				FF0BB1A917CD865D007AE516 /* Supporting Files */,
+				FF0BB1E817CD8A17007AE516 /* DrawingView.h */,
+				FF0BB1E917CD8A17007AE516 /* DrawingView.m */,
 			);
 			path = DrawingAlbum;
 			sourceTree = "<group>";
@@ -241,6 +258,10 @@
 				FF0BB1B717CD865D007AE516 /* Default@2x.png in Resources */,
 				FF0BB1B917CD865D007AE516 /* Default-568h@2x.png in Resources */,
 				FF0BB1BC17CD865D007AE516 /* MainStoryboard.storyboard in Resources */,
+				FF0BB1E417CD8698007AE516 /* cork.jpg in Resources */,
+				FF0BB1E517CD8698007AE516 /* icon.png in Resources */,
+				FF0BB1E617CD8698007AE516 /* no_image.png in Resources */,
+				FF0BB1E717CD8698007AE516 /* none.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -279,6 +300,7 @@
 				FF0BB1B317CD865D007AE516 /* AppDelegate.m in Sources */,
 				FF0BB1BF17CD865D007AE516 /* MasterViewController.m in Sources */,
 				FF0BB1C217CD865D007AE516 /* DetailViewController.m in Sources */,
+				FF0BB1EA17CD8A17007AE516 /* DrawingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
